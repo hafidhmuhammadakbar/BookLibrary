@@ -15,12 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->foreignId('author_id')->constrained('users');
-            $table->foreignId('category_id')->constrained('categories');
-            $table->foreignId('publisher_id')->constrained('publishers');
-            $table->string('description');
-            $table->string('publication_date');
-            $table->string('pages');
+            $table->foreignId('author_id');
+            $table->foreignId('category_id');
+            $table->foreignId('publisher_id');
+            $table->text('description');
+            $table->text('sinopsis');
+            $table->date('publication_date');
+            $table->integer('pages');
             $table->timestamps();
         });
     }
