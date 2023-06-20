@@ -20,7 +20,7 @@
                     <a class="nav-link {{ $active === 'authors' ? 'active' : '' }}" href="/authors">Authors</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'authors' ? 'active' : '' }}" href="/publishers">Publishers</a>
+                    <a class="nav-link {{ $active === 'publishers' ? 'active' : '' }}" href="/publishers">Publishers</a>
                 </li>
             </ul>
         </div>

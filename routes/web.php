@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PublisherController;
+
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +31,12 @@ Route::get('/books', [BookController::class, 'index']);
 
 // sigle book
 Route::get('/books/{book:slug}', [BookController::class, 'show']);
+
+// categories
+Route::get('/categories', [CategoryController::class, 'index']);
+
+// authors
+Route::get('/authors', [UserController::class, 'index']);
+
+// publishers
+Route::get('/publishers', [PublisherController::class, 'index']);
