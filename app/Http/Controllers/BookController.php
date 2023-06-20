@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\Book;
+use App\Models\Publisher;
 
 
 class BookController extends Controller
@@ -22,11 +23,16 @@ class BookController extends Controller
             $author = User::firstWhere('username', request('author'));
             $title = ' by ' . $author->name;
         }
+
+        if(request('publisher')){
+            $publisher = Publisher::firstWhere('slug', request('publisher'));
+            $title = ' by ' . $publisher->name;
+        }
         
         return view('books.index', [
-            "active" => "books",
-            "title" => "All Books" . $title,
-            "books" => Book::latest()->filter(request(['search', 'category', 'author']))->paginate(10)->withQueryString()
+            'active' => 'books',
+            'title' => 'All Books' . $title,
+            'books' => Book::latest()->filter(request(['search', 'category', 'author']))->paginate(10)->withQueryString()
         ]);
     }
 

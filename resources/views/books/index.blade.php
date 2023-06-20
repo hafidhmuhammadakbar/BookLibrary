@@ -17,7 +17,7 @@
                            </div>
                         </div>
                         <div class="col-md-6">
-                           <form action="/posts" method="GET">
+                           <form action="/books" method="GET">
                               @if (request('category'))
                                  <input type="hidden" name="category" value="{{ request('category') }}">
                               @endif
@@ -46,6 +46,11 @@
                                        {{ $books[0]->created_at->diffForHumans() }}
                                  </small>
                               </p>
+                              <p>
+                                 <small class="text-body-secondary">
+                                    Publish by <a href="/books?publisher={{ $books[0]->publisher->slug }}" class="text-decoration-none">{{ $books[0]->publisher->slug }}</a>
+                                 </small>
+                              </p>
                               <p class="card-text">{{ $books[0]->excerpt }}</p>
    
                               <a href="/books/{{$books[0]->slug}}" class="text-decoration-none btn btn-primary">Read more</a>
@@ -68,6 +73,11 @@
                                                       By. <a href="/books?author={{ $book->author->username }}" class="text-decoration-none">{{ $book->author->name }}</a>
                                                       {{ $book->created_at->diffForHumans() }}
                                                    </small>
+                                             </p>
+                                             <p>
+                                                <small class="text-body-secondary">
+                                                   Publish by <a href="/books?publisher={{ $book->publisher->slug }}" class="text-decoration-none">{{ $book->publisher->slug }}</a>
+                                                </small>
                                              </p>
                                              <p class="card-text">{{ $book->description }}</p>
                                              <a href="/books/{{$book->slug}}" class="btn btn-primary">Read More</a>
