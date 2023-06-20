@@ -23,7 +23,7 @@
                         <div class="col-md-4 my-4">
                            <a href="/books?publisher={{ $publisher->slug }}">
                               <div class="card text-bg-dark">
-                                 <img src="https://source.unsplash.com/500x500?publisher-logos" class="card-img" alt="{{ $publisher->name }}">
+                                 <img src="https://source.unsplash.com/500x500?company" class="card-img" alt="{{ $publisher->name }}">
                                  <div class="card-img-overlay d-flex align-items-center p-0">
                                     <h5 class="card-title text-center flex-fill p-4 fs-3" style="background-color: rgba(0, 0, 0, 0.7)">{{ $publisher->name }}</h5>
                                  </div>
