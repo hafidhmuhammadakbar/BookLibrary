@@ -25,6 +25,56 @@
                         </div>
                      </div>
                   </div>
+                  <div class="row d-flex align-items-center justify-content-center ms-2">
+                     <div class="col-md-4 col-lg-3 col-xl-3 mb-4">
+                        <div class="py-1 px-1">
+                           <div class="card" style="width: 90%;">
+                              <img src="https://source.unsplash.com/400x80?books" class="card-img-top" alt="Books">
+                              <div class="card-body">
+                                 <h5 class="card-title text-center">{{ App\Models\Book::count() }}</h5>
+                                 <p class="card-text text-center">Total All Books</p>
+                                 <p class="card-text text-center">At The Moment</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-4 col-lg-3 col-xl-3 mb-4">
+                        <div class="py-1 px-1">
+                           <div class="card" style="width: 90%;">
+                              <img src="https://source.unsplash.com/400x80?book" class="card-img-top" alt="Category">
+                              <div class="card-body">
+                                 <h5 class="card-title text-center">{{ App\Models\Category::count() }}</h5>
+                                 <p class="card-text text-center">Total All Category</p>
+                                 <p class="card-text text-center">At The Moment</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-4 col-lg-3 col-xl-3 mb-4">
+                        <div class="py-1 px-1">
+                           <div class="card" style="width: 90%;">
+                              <img src="https://source.unsplash.com/400x80?publisher" class="card-img-top" alt="Publisher">
+                              <div class="card-body">
+                                 <h5 class="card-title text-center">{{ App\Models\Publisher::count() }}</h5>
+                                 <p class="card-text text-center">Total All Publishers</p>
+                                 <p class="card-text text-center">At The Moment</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-4 col-lg-3 col-xl-3 mb-4">
+                        <div class="py-1 px-1">
+                           <div class="card" style="width: 90%;">
+                              <img src="https://source.unsplash.com/400x80?person" class="card-img-top" alt="Authors">
+                              <div class="card-body">
+                                 <h5 class="card-title text-center">{{ App\Models\User::count() }}</h5>
+                                 <p class="card-text text-center">Total All Authors</p>
+                                 <p class="card-text text-center">At The Moment</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
                </div>
             </div>
          </div>
