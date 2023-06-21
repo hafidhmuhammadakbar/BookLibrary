@@ -21,7 +21,7 @@
                   <div class="row">
                      @foreach ($authors as $author)
                         <div class="col-md-4 my-4">
-                           <a href="/books?author={{ $author->slug }}">
+                           <a href="/books?author={{ $author->username }}">
                               <div class="card text-bg-dark">
                                  <img src="https://source.unsplash.com/500x500?{{ $author->gender }}" class="card-img" alt="{{ $author->name }}">
                                  <div class="card-img-overlay d-flex align-items-center p-0">
