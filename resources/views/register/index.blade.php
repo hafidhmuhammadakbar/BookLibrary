@@ -40,6 +40,31 @@
                      </div>
                   @enderror
                </div>
+
+               <div class="form-floating mb-3">
+                  <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" placeholder="Phone" required value="{{ old('phone') }}">
+                  <label for="phone">Phone number</label>
+                  @error('phone')
+                     <div class="invalid-feedback">
+                        {{ $message }}
+                     </div>
+                  @enderror
+               </div>
+
+               <div class="form-floating mb-3">
+                  <select class="form-select" id="role" aria-label="Floating label select example" name="role">
+                     <option disabled>Select your role</option>
+                     <option value="writer" @if(old('role') === 'writer') selected @endif>Writer</option>
+                     <option value="reader" @if(old('role') === 'reader') selected @endif>Reader</option>
+                  </select>
+                  <label for="role">Role</label>
+                  @error('role')
+                     <div class="invalid-feedback">
+                        {{ $message }}
+                     </div>
+                  @enderror
+               </div>
+
                <div class="form-floating mb-3">
                   <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="Password" required>
                   <label for="password">Password</label>
@@ -49,13 +74,6 @@
                      </div>
                   @enderror
                </div>
-      
-               {{-- <div class="form-check text-start my-3">
-                  <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-                  <label class="form-check-label" for="flexCheckDefault">
-                     Remember me
-                  </label>
-               </div> --}}
                
                <button class="btn btn-primary w-100 py-2" type="submit">Register</button>
             </form>

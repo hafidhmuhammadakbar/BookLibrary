@@ -17,7 +17,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(7)->create();
+        User::factory(7)->create([
+            'role' => 'writer',
+        ]);
+
+        User::factory(7)->create([
+            'role' => 'reader',
+        ]);
 
         Category::create([
             'name' => 'Fiction',
@@ -47,31 +53,16 @@ class DatabaseSeeder extends Seeder
             'name' => 'Horror',
             'slug' => 'horror',
         ]);
+        Category::create([
+            'name' => 'Thriller',
+            'slug' => 'thriller',
+        ]);
+        Category::create([
+            'name' => 'Historical Fiction',
+            'slug' => 'historical-fiction',
+        ]);
 
-        Publisher::create([
-            'name' => 'Penguin Random House',
-            'slug' => 'penguin-random-house',
-            'address' => '1745 Broadway, New York, NY 10019, United States',
-            'phone' => '+1 212-782-9000',
-        ]);
-        Publisher::create([
-            'name' => 'Hachette Livre',
-            'slug' => 'hachette-livre',
-            'address' => '43 Quai de Grenelle, 75015 Paris, France',
-            'phone' => '+33 1 43 92 30 00',
-        ]);
-        Publisher::create([
-            'name' => 'HarperCollins',
-            'slug' => 'harpercollins',
-            'address' => '195 Broadway, New York, NY 10007, United States',
-            'phone' => '+1 212-207-7000',
-        ]);
-        Publisher::create([
-            'name' => 'Macmillan Publishers',
-            'slug' => 'macmillan-publishers',
-            'address' => '120 Broadway, New York, NY 10271, United States',
-            'phone' => '+1 646-307-5151',
-        ]);
+        Publisher::factory(6)->create();
 
         Book::factory(30)->create();
     }

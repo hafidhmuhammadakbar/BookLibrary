@@ -30,6 +30,8 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('login.aut
 Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 Route::middleware('auth')->group(function () {
     Route::redirect('/', '/home');
 
