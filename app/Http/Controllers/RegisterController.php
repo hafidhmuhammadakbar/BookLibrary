@@ -17,10 +17,12 @@ class RegisterController extends Controller
 
     public function store(Request $request){
         $validatedData = request()->validate([
-            'name' => 'required|min:5|alpha',
+            'name' => ['required', 'min:5', 'regex:/^[A-Za-z ]+$/'],
             'username' => 'required|min:5|unique:users',
-            'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min:5'
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:5',
+            'phone' => ['required', 'regex:/^(\+62)\d{10,12}$/'],
+            'role' => ['required', 'in:writer,reader']
         ]);
 
         $validatedData['password'] = bcrypt($validatedData['password']);
