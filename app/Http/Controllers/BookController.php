@@ -104,7 +104,7 @@ class BookController extends Controller
 
     public function create()
     {
-        return view('mybooks.test', [
+        return view('mybooks.create', [
             "active" => "mybooks",
             "title" => "Create Book"
         ]);
