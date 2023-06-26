@@ -12,6 +12,9 @@
                         <a class="nav-link {{ $active === 'home' ? 'active' : '' }}" href="/">Home</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link {{ $active === 'mybooks' ? 'active' : '' }}" href="/mybooks">My Books</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link {{ $active === 'books' ? 'active' : '' }}" href="/books">Books</a>
                     </li>
                     <li class="nav-item">
@@ -33,7 +36,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/home"><i class="bi bi-person-circle"></i> My Profil</a></li>
-                            <li><a class="dropdown-item" href="/books"><i class="bi bi-layout-text-window-reverse"></i> My Post</a></li>
+                            <li><a class="dropdown-item" href="/mybooks"><i class="bi bi-layout-text-window-reverse"></i> My Post</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <form action="/logout" method="POST">

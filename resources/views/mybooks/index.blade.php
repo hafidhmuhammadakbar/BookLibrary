@@ -8,7 +8,7 @@
             <div class="card border shadow-xs mb-4">
                   <div class="card-header border-bottom pb-0">
                      <div class="row d-flex ">
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                            <div class="d-sm-flex align-items-center mb-3">
                               <div>
                                  <h3 class="font-weight-semibold text-lg mb-0">{{ $title }}</h3>
@@ -16,8 +16,15 @@
                               </div>
                            </div>
                         </div>
+                        @can('writer')
+                           <div class="col-md-3 my-2 p-2">
+                              <a href="{{ route('mybooks.create') }}" class="text-decoration-none btn btn-primary">
+                                 <span class="btn-inner--text">Add book</span>
+                              </a>
+                           </div>
+                        @endcan
                         <div class="col-md-6">
-                           <form action="/books" method="GET">
+                           <form action="/mybooks" method="GET">
                               @if (request('category'))
                                  <input type="hidden" name="category" value="{{ request('category') }}">
                               @endif
@@ -33,57 +40,57 @@
                      </div>
                   </div>
 
-                  @if ($books->count())
+                  @if ($mybooks->count())
                      <div class="container">
                         <div class="card mb-5 mt-5">
                            <div class="position-absolute px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7)">
-                              <a href="/books?category={{ $books[0]->category->slug }}" class="text-white text-decoration-none"> {{ $books[0]->category->name }}</a>
+                              <a href="/mybooks?category={{ $mybooks[0]->category->slug }}" class="text-white text-decoration-none"> {{ $mybooks[0]->category->name }}</a>
                            </div>
-                           <img src="https://source.unsplash.com/1200x400?{{ $books[0]->category->name }}" class="card-img-top" alt="{{ $books[0]->category->name }}">
+                           <img src="https://source.unsplash.com/1200x400?{{ $mybooks[0]->category->name }}" class="card-img-top" alt="{{ $mybooks[0]->category->name }}">
                            <div class="card-body text-center">
-                              <h2 class="card-title"><a href="/books/{{ $books[0]->slug }}" class="text-decoration-none text-dark">{{ $books[0]->title }}</a></h2>
+                              <h2 class="card-title"><a href="/mybooks/{{ $mybooks[0]->slug }}" class="text-decoration-none text-dark">{{ $mybooks[0]->title }}</a></h2>
                               <p>
                                  <small class="text-body-secondary">
-                                    By. <a href="/books?author={{ $books[0]->author->username }}" class="text-decoration-none">{{ $books[0]->author->name }}</a> in 
-                                       <a href="/books?category={{ $books[0]->category->slug }}" class="text-decoration-none">{{ $books[0]->category->name }}</a>
-                                       {{ $books[0]->created_at->diffForHumans() }}
+                                    By. <a href="/mybooks?author={{ $mybooks[0]->author->username }}" class="text-decoration-none">{{ $mybooks[0]->author->name }}</a> in 
+                                       <a href="/mybooks?category={{ $mybooks[0]->category->slug }}" class="text-decoration-none">{{ $mybooks[0]->category->name }}</a>
+                                       {{ $mybooks[0]->created_at->diffForHumans() }}
                                  </small>
                               </p>
                               <p>
                                  <small class="text-body-secondary">
-                                    Publish by <a href="/books?publisher={{ $books[0]->publisher->slug }}" class="text-decoration-none">{{ $books[0]->publisher->slug }}</a>
+                                    Publish by <a href="/mybooks?publisher={{ $mybooks[0]->publisher->slug }}" class="text-decoration-none">{{ $mybooks[0]->publisher->slug }}</a>
                                  </small>
                               </p>
-                              <p class="card-text">{{ $books[0]->excerpt }}</p>
+                              <p class="card-text">{{ $mybooks[0]->excerpt }}</p>
    
-                              <a href="/books/{{$books[0]->slug}}" class="text-decoration-none btn btn-primary">Read more</a>
+                              <a href="/mybooks/{{$mybooks[0]->slug}}" class="text-decoration-none btn btn-primary">Read more</a>
                            </div>
                         </div>
                      </div>
                      <div class="container">
                            <div class="row">
-                              @foreach ($books->skip(1) as $book)
+                              @foreach ($mybooks->skip(1) as $mybook)
                                  <div class="col-md-4 mb-3">
                                        <div class="card">
                                           <div class="position-absolute px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7)">
-                                             <a href="/books?category={{ $book->category->slug }}" class="text-white text-decoration-none"> {{ $book->category->name }}</a>
+                                             <a href="/mybooks?category={{ $mybook->category->slug }}" class="text-white text-decoration-none"> {{ $mybook->category->name }}</a>
                                           </div>
-                                          <img src="https://source.unsplash.com/500x400?{{ $book->category->name }}" class="card-img-top" alt="{{ $book->category->name }}">
+                                          <img src="https://source.unsplash.com/500x400?{{ $mybook->category->name }}" class="card-img-top" alt="{{ $mybook->category->name }}">
                                           <div class="card-body">
-                                             <h5 class="card-title">{{ $book->title }}</h5>
+                                             <h5 class="card-title">{{ $mybook->title }}</h5>
                                              <p>
                                                    <small class="text-body-secondary">
-                                                      By. <a href="/books?author={{ $book->author->username }}" class="text-decoration-none">{{ $book->author->name }}</a>
-                                                      {{ $book->created_at->diffForHumans() }}
+                                                      By. <a href="/mybooks?author={{ $mybook->author->username }}" class="text-decoration-none">{{ $mybook->author->name }}</a>
+                                                      {{ $mybook->created_at->diffForHumans() }}
                                                    </small>
                                              </p>
                                              <p>
                                                 <small class="text-body-secondary">
-                                                   Publish by <a href="/books?publisher={{ $book->publisher->slug }}" class="text-decoration-none">{{ $book->publisher->slug }}</a>
+                                                   Publish by <a href="/mybooks?publisher={{ $mybook->publisher->slug }}" class="text-decoration-none">{{ $mybook->publisher->slug }}</a>
                                                 </small>
                                              </p>
-                                             <p class="card-text">{{ $book->description }}</p>
-                                             <a href="/books/{{$book->slug}}" class="btn btn-primary">Read More</a>
+                                             <p class="card-text">{{ $mybook->description }}</p>
+                                             <a href="/mybooks/{{$mybook->slug}}" class="btn btn-primary">Read More</a>
                                           </div>
                                        </div>
                                  </div>
@@ -95,7 +102,7 @@
                   @endif
 
                   <div class="d-flex justify-content-center">
-                     {{ $books->links() }}
+                     {{ $mybooks->links() }}
                   </div>
                </div>
             </div>

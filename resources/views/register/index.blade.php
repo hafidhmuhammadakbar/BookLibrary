@@ -4,7 +4,7 @@
    <div class="row d-flex justify-content-center">
       <div class="col-md-6">
          @if(session()->has('error'))
-         <div class="alert alert-danger alert-dismissible fade show" role="alert">
+         <div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
             {{ session('success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
          </div>

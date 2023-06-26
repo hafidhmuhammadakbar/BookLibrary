@@ -10,7 +10,7 @@
                      <div class="d-sm-flex align-items-center mb-3">
                         <div>
                            <h3 class="font-weight-semibold text-lg mb-0">{{ $title }}</h3>
-                           <p class="text-sm mb-sm-0">Author Home Page</p>
+                           <p class="text-sm mb-sm-0">Home Page</p>
                         </div>
                      </div>
                   </div>
@@ -31,8 +31,13 @@
                            <div class="card" style="width: 90%;">
                               <img src="https://source.unsplash.com/400x80?books" class="card-img-top" alt="Books">
                               <div class="card-body">
-                                 <h5 class="card-title text-center">{{ App\Models\Book::count() }}</h5>
-                                 <p class="card-text text-center">Total All Books</p>
+                                 <h5 class="card-title text-center">{{$books->count() }}</h5>
+                                 @can('reader')
+                                    <p class="card-text text-center">Total All Books</p>
+                                 @endcan
+                                 @can('writer')
+                                    <p class="card-text text-center">Total All Your Books</p>
+                                 @endcan
                                  <p class="card-text text-center">At The Moment</p>
                               </div>
                            </div>
@@ -43,8 +48,13 @@
                            <div class="card" style="width: 90%;">
                               <img src="https://source.unsplash.com/400x80?book" class="card-img-top" alt="Category">
                               <div class="card-body">
-                                 <h5 class="card-title text-center">{{ App\Models\Category::count() }}</h5>
-                                 <p class="card-text text-center">Total All Category</p>
+                                 <h5 class="card-title text-center">{{ $categories->count() }}</h5>
+                                 @can('reader')
+                                    <p class="card-text text-center">Total All Categories</p>
+                                 @endcan
+                                 @can('writer')
+                                    <p class="card-text text-center">Total All Your Categories</p>
+                                 @endcan
                                  <p class="card-text text-center">At The Moment</p>
                               </div>
                            </div>
@@ -55,8 +65,13 @@
                            <div class="card" style="width: 90%;">
                               <img src="https://source.unsplash.com/400x80?publisher" class="card-img-top" alt="Publisher">
                               <div class="card-body">
-                                 <h5 class="card-title text-center">{{ App\Models\Publisher::count() }}</h5>
-                                 <p class="card-text text-center">Total All Publishers</p>
+                                 <h5 class="card-title text-center">{{ $publishers->count() }}</h5>
+                                 @can('reader')
+                                    <p class="card-text text-center">Total All publishers</p>
+                                 @endcan
+                                 @can('writer')
+                                    <p class="card-text text-center">Total All Your publishers</p>
+                                 @endcan
                                  <p class="card-text text-center">At The Moment</p>
                               </div>
                            </div>
@@ -67,7 +82,7 @@
                            <div class="card" style="width: 90%;">
                               <img src="https://source.unsplash.com/400x80?person" class="card-img-top" alt="Authors">
                               <div class="card-body">
-                                 <h5 class="card-title text-center">{{ App\Models\User::count() }}</h5>
+                                 <h5 class="card-title text-center">{{ $authors->count() }}</h5>
                                  <p class="card-text text-center">Total All Authors</p>
                                  <p class="card-text text-center">At The Moment</p>
                               </div>

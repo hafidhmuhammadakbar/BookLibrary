@@ -21,18 +21,18 @@
                <div class="container">
                   <div class="row justify-content-center mb-5">
                      <div class="col-md-8">
-                        <h1 class="mb-3 text-center mt-3">{{ $book->title }}</h1>
+                        <h1 class="mb-3 text-center mt-3">{{ $mybook->title }}</h1>
                         <p class="text-justify text-center">
-                              By. <a href="/books?author={{ $book->author->username }}" class="text-decoration-none">{{ $book->author->name }}</a> in 
-                              <a href="/books?category={{ $book->category->slug }}" class="text-decoration-none">{{ $book->category->name }}</a>
+                              By. <a href="/mybooks?author={{ $mybook->author->username }}" class="text-decoration-none">{{ $mybook->author->name }}</a> in 
+                              <a href="/mybooks?category={{ $mybook->category->slug }}" class="text-decoration-none">{{ $mybook->category->name }}</a>
                         </p>
-                        <img src="https://source.unsplash.com/1200x400?{{ $book->category->name }}" class="card-img-top" alt="{{ $book->category->name }}" class="img-fluid">
+                        <img src="https://source.unsplash.com/1200x400?{{ $mybook->category->name }}" class="card-img-top" alt="{{ $mybook->category->name }}" class="img-fluid">
                         
                         <article class="my-3 fs-4">
-                              <p style="text-align: justify;"> {{ $book->sinopsis }} </p>
+                              <p style="text-align: justify;"> {{ $mybook->sinopsis }} </p>
                         </article>
                         
-                        <a href="/books" class="text-decoration-none">Back to Books</a>
+                        <a href="/mybooks" class="text-decoration-none">Back to mybooks</a>
                      </div>
                   </div>
                </div>
