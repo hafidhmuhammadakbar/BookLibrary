@@ -102,7 +102,7 @@ class BookController extends Controller
         ]);
     }
 
-    public function create()
+    public function mybooksCreate()
     {
         return view('mybooks.create', [
             "active" => "mybooks",
@@ -110,16 +110,16 @@ class BookController extends Controller
         ]);
     }
 
-    public function store()
+    public function mybooksStore()
     {
         $validatedData = request()->validate([
-            'title' => 'required|max:255',
+            'title' => 'required',
             'category_id' => 'required',
             'publisher_id' => 'required',
             'description' => 'required',
             'sinopsis' => 'required',
-            'pages' => 'required|numeric|min:1',
-            'publication_date' => 'required|date',
+            'pages' => 'required',
+            'publication_date' => 'required',
         ]);
 
         // make slug from title
@@ -142,7 +142,7 @@ class BookController extends Controller
         if($success) {
             return redirect(route('mybooks'))->with('success', 'Book has been created!');
         } else {
-            return redirect(route('mybooks'))->with('errors', 'Book failed to create!');
+            return redirect(route('mybooks'))->with('error', 'Book failed to create!');
         }
     }
 

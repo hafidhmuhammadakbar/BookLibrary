@@ -3,24 +3,18 @@
 {{-- section --}}
 @section('content')
    <div class="container-fluid py-4 px-5">
-      {{-- @if ($success->any())
-         <div class="alert alert-success">
-            <ul class="mb-0">
-               @foreach ($success->all() as $success)
-                     <li>{{ $success }}</li>
-               @endforeach
-            </ul>
+      @if(session()->has('error'))
+         <div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
          </div>
-      @elseif ($errors->any())
-         <div class="alert alert-danger">
-            <ul class="mb-0">
-               @foreach ($errors->all() as $error)
-                     <li>{{ $error }}</li>
-               @endforeach
-            </ul>
+      @elseif(session()->has('success'))
+         <div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
          </div>
       @endif
-      <div class="row"> --}}
+      <div class="row">
          <div class="col-12">
             <div class="card border shadow-xs mb-4">
                   <div class="card-header border-bottom pb-0">
@@ -33,13 +27,11 @@
                               </div>
                            </div>
                         </div>
-                        @can('writer')
-                           <div class="col-md-3 my-2 p-2">
-                              <a href="{{ route('mybooks.create') }}" class="text-decoration-none btn btn-primary">
-                                 <span class="btn-inner--text">Add book</span>
-                              </a>
-                           </div>
-                        @endcan
+                        <div class="col-md-3 my-2 p-2">
+                           <a href="{{ route('mybooks.create') }}" class="text-decoration-none btn btn-primary">
+                              <span class="btn-inner--text">Add book</span>
+                           </a>
+                        </div>
                         <div class="col-md-6">
                            <form action="/mybooks" method="GET">
                               @if (request('category'))

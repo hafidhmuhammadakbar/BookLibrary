@@ -38,6 +38,18 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/home', [BookController::class, 'dashboard'])->name('home');
     
+    // my books
+    Route::get('/mybooks', [BookController::class, 'mybooks'])->middleware('writer')->name('mybooks.index');
+    // Route::post('/mybooks', [BookController::class, 'mybooksStore'])->middleware('writer')->name('mybooks.store');
+    Route::get('/mybooks/create', [BookController::class, 'mybooksCreate'])->middleware('writer')->name('mybooks.create');
+    Route::post('/mybooks', [BookController::class, 'mybooksStore'])->middleware('writer')->name('mybooks.store');
+
+    Route::get('/mybooks/{book}/edit', [BookController::class, 'edit'])->middleware('writer')->name('mybooks.edit');
+    Route::put('/mybooks/{book}', [BookController::class, 'update'])->middleware('writer')->name('mybooks.update');
+    
+    Route::delete('/mybooks/{book:slug}', [BookController::class, 'destroy'])->middleware('writer')->name('mybooks.destroy');
+    Route::get('/mybooks/{book:slug}', [BookController::class, 'mybooksShow'])->middleware('writer')->name('mybooks.show');
+
     // books
     Route::get('/books', [BookController::class, 'index'])->name('books.index');
     
@@ -52,13 +64,4 @@ Route::middleware('auth')->group(function () {
     
     // publishers
     Route::get('/publishers', [PublisherController::class, 'index'])->name('publishers.index');
-
-    // my books
-    Route::get('/mybooks', [BookController::class, 'mybooks'])->name('mybooks.index');
-    Route::get('/mybooks/create', [BookController::class, 'create'])->name('mybooks.create');
-    Route::post('/mybooks', [BookController::class, 'store'])->name('mybooks.store');
-    Route::get('/mybooks/{book}/edit', [BookController::class, 'edit'])->name('mybooks.edit');
-    Route::put('/mybooks/{book}', [BookController::class, 'update'])->name('mybooks.update');
-    Route::delete('/mybooks/{book:slug}', [BookController::class, 'destroy'])->name('mybooks.destroy');
-    Route::get('/mybooks/{book:slug}', [BookController::class, 'mybooksShow'])->name('mybooks.show');
 });
