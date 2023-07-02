@@ -55,13 +55,10 @@ Route::middleware('auth')->group(function () {
 
     // my books
     Route::get('/mybooks', [BookController::class, 'mybooks'])->name('mybooks.index');
-    Route::get('/mybooks/{book:slug}', [BookController::class, 'mybooksShow'])->name('mybooks.show');
-
     Route::get('/mybooks/create', [BookController::class, 'create'])->name('mybooks.create');
     Route::post('/mybooks', [BookController::class, 'store'])->name('mybooks.store');
-    
     Route::get('/mybooks/{book}/edit', [BookController::class, 'edit'])->name('mybooks.edit');
     Route::put('/mybooks/{book}', [BookController::class, 'update'])->name('mybooks.update');
-    
     Route::delete('/mybooks/{book:slug}', [BookController::class, 'destroy'])->name('mybooks.destroy');
+    Route::get('/mybooks/{book:slug}', [BookController::class, 'mybooksShow'])->name('mybooks.show');
 });

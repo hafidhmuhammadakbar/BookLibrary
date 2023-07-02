@@ -3,7 +3,24 @@
 {{-- section --}}
 @section('content')
    <div class="container-fluid py-4 px-5">
-      <div class="row">
+      {{-- @if ($success->any())
+         <div class="alert alert-success">
+            <ul class="mb-0">
+               @foreach ($success->all() as $success)
+                     <li>{{ $success }}</li>
+               @endforeach
+            </ul>
+         </div>
+      @elseif ($errors->any())
+         <div class="alert alert-danger">
+            <ul class="mb-0">
+               @foreach ($errors->all() as $error)
+                     <li>{{ $error }}</li>
+               @endforeach
+            </ul>
+         </div>
+      @endif
+      <div class="row"> --}}
          <div class="col-12">
             <div class="card border shadow-xs mb-4">
                   <div class="card-header border-bottom pb-0">

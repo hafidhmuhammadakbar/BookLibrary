@@ -110,30 +110,40 @@ class BookController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store()
     {
-        // make slug from title
-        $slug = Str::slug($request->title, '-');
-
-        $validatedData = $request->validate([
+        $validatedData = request()->validate([
             'title' => 'required|max:255',
-            'slug' => ['required', Rule::unique('books')],
             'category_id' => 'required',
             'publisher_id' => 'required',
-            'author_id' => 'required',
-            'cover' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description' => 'required',
             'sinopsis' => 'required',
             'pages' => 'required|numeric|min:1',
             'publication_date' => 'required|date',
         ]);
 
-        $validatedData['slug'] = $slug;
-        $validatedData['cover'] = $request->file('cover')->store('assets/covers', 'public');
+        // make slug from title
+        $slug = Str::slug(request('title'), '-');
 
-        Book::create($validatedData);
+        $author_id = auth()->user()->id;
 
-        return redirect('/mybooks')->with('success', 'Book has been created!');
+        $success = Book::create([
+            'title' => $validatedData['title'],
+            'slug' => $slug,
+            'author_id' => $author_id,
+            'category_id' => $validatedData['category_id'],
+            'publisher_id' => $validatedData['publisher_id'],
+            'description' => $validatedData['description'],
+            'sinopsis' => $validatedData['sinopsis'],
+            'publication_date' => $validatedData['publication_date'],
+            'pages' => $validatedData['pages'],
+        ]);
+
+        if($success) {
+            return redirect(route('mybooks'))->with('success', 'Book has been created!');
+        } else {
+            return redirect(route('mybooks'))->with('errors', 'Book failed to create!');
+        }
     }
 
 }
