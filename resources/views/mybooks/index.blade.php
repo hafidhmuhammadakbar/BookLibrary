@@ -72,7 +72,26 @@
                               </p>
                               <p class="card-text">{{ $mybooks[0]->excerpt }}</p>
    
-                              <a href="/mybooks/{{$mybooks[0]->slug}}" class="text-decoration-none btn btn-primary">Read more</a>
+                              <div class="row d-flex justify-content-center">
+                                 <a href="/mybooks/{{$mybooks[0]->slug}}" class="text-decoration-none col-auto">
+                                    <button type="button" class="btn btn-sm btn-primary my-2 mx-2">
+                                       <i class="bi bi-three-dots"></i> Read More
+                                    </button>
+                                 </a>
+                                 <a href="{{ route('mybooks.edit', $mybooks[0]) }}" class="text-decoration-none col-auto">
+                                    <button type="button" class="btn btn-sm btn-primary my-2 mx-2">
+                                       <i class="fas fa-pencil-alt"></i> Update
+                                    </button>
+                                 </a>
+                                 <form action="{{ route('mybooks.destroy', $mybooks[0]) }}" method="POST" class="col-auto">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm my-2 mx-2 btn-danger" onclick="return confirm('Are you sure to delete this book?')">
+                                       <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                 </form>
+                              </div>
+                              
                            </div>
                         </div>
                      </div>
@@ -99,7 +118,27 @@
                                                 </small>
                                              </p>
                                              <p class="card-text">{{ $mybook->description }}</p>
-                                             <a href="/mybooks/{{$mybook->slug}}" class="btn btn-primary">Read More</a>
+                                             
+                                             <div class="row d-flex justify-content-center">
+                                                <a href="/mybooks/{{$mybook->slug}}" class="text-decoration-none col-auto">
+                                                   <button type="button" class="btn btn-sm btn-primary my-2 mx-2">
+                                                      <i class="bi bi-three-dots"></i> Read More
+                                                   </button>
+                                                </a>
+                                                <a href="{{ route('mybooks.edit', $mybook) }}" class="text-decoration-none col-auto">
+                                                   <button type="button" class="btn btn-sm btn-primary my-2 mx-2">
+                                                      <i class="fas fa-pencil-alt"></i> Update
+                                                   </button>
+                                                </a>
+                                                <form action="{{ route('mybooks.destroy', $mybook) }}" method="POST" class="col-auto">
+                                                   @csrf
+                                                   @method('DELETE')
+                                                   <button type="submit" class="btn btn-sm my-2 mx-2 btn-danger" onclick="return confirm('Are you sure to delete this book?')">
+                                                      <i class="fas fa-trash"></i> Delete
+                                                   </button>
+                                                </form>
+                                             </div>
+
                                           </div>
                                        </div>
                                  </div>

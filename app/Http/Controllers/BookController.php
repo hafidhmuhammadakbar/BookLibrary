@@ -119,7 +119,7 @@ class BookController extends Controller
             'description' => 'required',
             'sinopsis' => 'required',
             'pages' => 'required',
-            'publication_date' => 'required',
+            'publication_date' => 'required'
         ]);
 
         // make slug from title
@@ -136,14 +136,68 @@ class BookController extends Controller
             'description' => $validatedData['description'],
             'sinopsis' => $validatedData['sinopsis'],
             'publication_date' => $validatedData['publication_date'],
+            'pages' => $validatedData['pages']
+        ]);
+
+        if($success) {
+            return redirect(route('mybooks.index'))->with('success', 'Book has been created!');
+        } else {
+            return redirect(route('mybooks.index'))->with('error', 'Book failed to create!');
+        }
+    }
+
+    public function mybooksEdit(Book $book)
+    {
+        return view('mybooks.edit', [
+            "active" => "mybooks",
+            "title" => "Edit Book",
+            "mybook" => $book
+        ]);
+    }
+
+    public function mybooksUpdate(Book $book){
+        $validatedData = request()->validate([
+            'title' => 'required',
+            'category_id' => 'required',
+            'publisher_id' => 'required',
+            'description' => 'required',
+            'sinopsis' => 'required',
+            'pages' => 'required',
+            'publication_date' => 'required',
+        ]);
+
+        // make slug from title
+        $slug = Str::slug(request('title'), '-');
+
+        $author_id = auth()->user()->id;
+
+        $success = $book->update([
+            'title' => $validatedData['title'],
+            'slug' => $slug,
+            'author_id' => $author_id,
+            'category_id' => $validatedData['category_id'],
+            'publisher_id' => $validatedData['publisher_id'],
+            'description' => $validatedData['description'],
+            'sinopsis' => $validatedData['sinopsis'],
+            'publication_date' => $validatedData['publication_date'],
             'pages' => $validatedData['pages'],
         ]);
 
         if($success) {
-            return redirect(route('mybooks'))->with('success', 'Book has been created!');
+            return redirect(route('mybooks.index'))->with('success', 'Book has been updated!');
         } else {
-            return redirect(route('mybooks'))->with('error', 'Book failed to create!');
+            return redirect(route('mybooks.index'))->with('error', 'Book failed to update!');
         }
     }
 
+    public function destroy(Book $book)
+    {
+        $success = $book->delete();
+
+        if($success) {
+            return redirect(route('mybooks.index'))->with('success', 'Book has been deleted!');
+        } else {
+            return redirect(route('mybooks.index'))->with('error', 'Book failed to delete!');
+        }
+    }
 }
