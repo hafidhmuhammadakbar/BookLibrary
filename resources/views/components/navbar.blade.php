@@ -11,9 +11,11 @@
                     <li class="nav-item">
                         <a class="nav-link {{ $active === 'home' ? 'active' : '' }}" href="/">Home</a>
                     </li>
+                    @can('writer')
                     <li class="nav-item">
                         <a class="nav-link {{ $active === 'mybooks' ? 'active' : '' }}" href="/mybooks">My Books</a>
                     </li>
+                    @endcan
                     <li class="nav-item">
                         <a class="nav-link {{ $active === 'books' ? 'active' : '' }}" href="/books">Books</a>
                     </li>
@@ -35,8 +37,10 @@
                             Welcome back, {{ auth()->user()->name }}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/home"><i class="bi bi-person-circle"></i> My Profil</a></li>
-                            <li><a class="dropdown-item" href="/mybooks"><i class="bi bi-layout-text-window-reverse"></i> My Post</a></li>
+                            <li><a class="dropdown-item" href="/home"><i class="bi bi-person-circle"></i> Home </a></li>
+                            @can('writer')
+                                <li><a class="dropdown-item" href="/mybooks"><i class="bi bi-layout-text-window-reverse"></i> My Post</a></li>
+                            @endcan
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <form action="/logout" method="POST">
