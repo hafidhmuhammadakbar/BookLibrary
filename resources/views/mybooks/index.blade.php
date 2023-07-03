@@ -57,7 +57,7 @@
                            </div>
                            <img src="https://source.unsplash.com/1200x400?{{ $mybooks[0]->category->name }}" class="card-img-top" alt="{{ $mybooks[0]->category->name }}">
                            <div class="card-body text-center">
-                              <h2 class="card-title"><a href="/mybooks/{{ $mybooks[0]->slug }}" class="text-decoration-none text-dark">{{ $mybooks[0]->title }}</a></h2>
+                              <h2 class="card-title"><a href="/mybooks/{{ $mybooks[0]->slug }}" class="text-decoration-none text-dark" style="text-transform: capitalize;">{{ $mybooks[0]->title }}</a></h2>
                               <p>
                                  <small class="text-body-secondary">
                                     By. <a href="/mybooks?author={{ $mybooks[0]->author->username }}" class="text-decoration-none">{{ $mybooks[0]->author->name }}</a> in 
@@ -67,7 +67,7 @@
                               </p>
                               <p>
                                  <small class="text-body-secondary">
-                                    Publish by <a href="/mybooks?publisher={{ $mybooks[0]->publisher->slug }}" class="text-decoration-none">{{ $mybooks[0]->publisher->slug }}</a>
+                                    Publish by <a href="/mybooks?publisher={{ $mybooks[0]->publisher->slug }}" class="text-decoration-none">{{ $mybooks[0]->publisher->name }}</a>
                                  </small>
                               </p>
                               <p class="card-text">{{ $mybooks[0]->excerpt }}</p>
@@ -81,7 +81,7 @@
                                     </button>
                                  </a>
                                  <a href="{{ route('mybooks.edit', $mybooks[0]) }}" class="text-decoration-none col-auto">
-                                    <button type="button" class="btn btn-sm btn-primary my-2 mx-2">
+                                    <button type="button" class="btn btn-sm btn-success my-2 mx-2">
                                        <i class="fas fa-pencil-alt"></i> Update
                                     </button>
                                  </a>
@@ -97,6 +97,7 @@
                            </div>
                         </div>
                      </div>
+
                      <div class="container">
                            <div class="row">
                               @foreach ($mybooks->skip(1) as $mybook)
@@ -107,7 +108,7 @@
                                           </div>
                                           <img src="https://source.unsplash.com/500x400?{{ $mybook->category->name }}" class="card-img-top" alt="{{ $mybook->category->name }}">
                                           <div class="card-body">
-                                             <h5 class="card-title">{{ $mybook->title }}</h5>
+                                             <h5 class="card-title" style="text-transform: capitalize;">{{ $mybook->title }}</h5>
                                              <p>
                                                    <small class="text-body-secondary">
                                                       By. <a href="/mybooks?author={{ $mybook->author->username }}" class="text-decoration-none">{{ $mybook->author->name }}</a>
@@ -116,7 +117,7 @@
                                              </p>
                                              <p>
                                                 <small class="text-body-secondary">
-                                                   Publish by <a href="/mybooks?publisher={{ $mybook->publisher->slug }}" class="text-decoration-none">{{ $mybook->publisher->slug }}</a>
+                                                   Publish by <a href="/mybooks?publisher={{ $mybook->publisher->slug }}" class="text-decoration-none">{{ $mybook->publisher->name }}</a>
                                                 </small>
                                              </p>
                                              <p class="card-text">{{ $mybook->description }}</p>
@@ -128,7 +129,7 @@
                                                    </button>
                                                 </a>
                                                 <a href="{{ route('mybooks.edit', $mybook) }}" class="text-decoration-none col-auto">
-                                                   <button type="button" class="btn btn-sm btn-primary my-2 mx-2">
+                                                   <button type="button" class="btn btn-sm btn-success my-2 mx-2">
                                                       <i class="fas fa-pencil-alt"></i> Update
                                                    </button>
                                                 </a>

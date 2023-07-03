@@ -41,7 +41,7 @@
                            </div>
                            <img src="https://source.unsplash.com/1200x400?{{ $books[0]->category->name }}" class="card-img-top" alt="{{ $books[0]->category->name }}">
                            <div class="card-body text-center">
-                              <h2 class="card-title"><a href="/books/{{ $books[0]->slug }}" class="text-decoration-none text-dark">{{ $books[0]->title }}</a></h2>
+                              <h2 class="card-title"><a href="/books/{{ $books[0]->slug }}" class="text-decoration-none text-dark" style="text-transform: capitalize;">{{ $books[0]->title }}</a></h2>
                               <p>
                                  <small class="text-body-secondary">
                                     By. <a href="/books?author={{ $books[0]->author->username }}" class="text-decoration-none">{{ $books[0]->author->name }}</a> in 
@@ -51,7 +51,7 @@
                               </p>
                               <p>
                                  <small class="text-body-secondary">
-                                    Publish by <a href="/books?publisher={{ $books[0]->publisher->slug }}" class="text-decoration-none">{{ $books[0]->publisher->slug }}</a>
+                                    Publish by <a href="/books?publisher={{ $books[0]->publisher->slug }}" class="text-decoration-none">{{ $books[0]->publisher->name }}</a>
                                  </small>
                               </p>
                               <p class="card-text">{{ $books[0]->excerpt }}</p>
@@ -70,7 +70,7 @@
                                           </div>
                                           <img src="https://source.unsplash.com/500x400?{{ $book->category->name }}" class="card-img-top" alt="{{ $book->category->name }}">
                                           <div class="card-body">
-                                             <h5 class="card-title">{{ $book->title }}</h5>
+                                             <h5 class="card-title" style="text-transform: capitalize;">{{ $book->title }}</h5>
                                              <p>
                                                    <small class="text-body-secondary">
                                                       By. <a href="/books?author={{ $book->author->username }}" class="text-decoration-none">{{ $book->author->name }}</a>
@@ -79,7 +79,7 @@
                                              </p>
                                              <p>
                                                 <small class="text-body-secondary">
-                                                   Publish by <a href="/books?publisher={{ $book->publisher->slug }}" class="text-decoration-none">{{ $book->publisher->slug }}</a>
+                                                   Publish by <a href="/books?publisher={{ $book->publisher->slug }}" class="text-decoration-none">{{ $book->publisher->name }}</a>
                                                 </small>
                                              </p>
                                              <p class="card-text">{{ $book->description }}</p>
