@@ -9,10 +9,11 @@ class UserController extends Controller
 {
     public function index()
     {
+
         return view('author.index', [
             'title' => 'All Author',
             'active' => 'authors',
-            'authors' => User::all(),
+            'authors' => User::where('role', 'writer')->get(),
         ]);
     }
 }
