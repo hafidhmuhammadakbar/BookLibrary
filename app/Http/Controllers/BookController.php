@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Book;
 use App\Models\Publisher;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -113,13 +114,14 @@ class BookController extends Controller
     public function mybooksStore()
     {
         $validatedData = request()->validate([
-            'title' => 'required',
+            'title' => 'required|unique:books',
             'category_id' => 'required',
             'publisher_id' => 'required',
-            'description' => 'required',
+            'description' => 'required|max:255',
             'sinopsis' => 'required',
-            'pages' => 'required',
-            'publication_date' => 'required'
+            'pages' => 'required|numeric|min:1',
+            'publication_date' => 'required',
+            'images' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         // make slug from title
@@ -136,7 +138,8 @@ class BookController extends Controller
             'description' => $validatedData['description'],
             'sinopsis' => $validatedData['sinopsis'],
             'publication_date' => $validatedData['publication_date'],
-            'pages' => $validatedData['pages']
+            'pages' => $validatedData['pages'],
+            'images' => request('images') ? request('images')->store('book_images') : null,
         ]);
 
         if($success) {
@@ -156,20 +159,34 @@ class BookController extends Controller
     }
 
     public function mybooksUpdate(Book $book){
+
+        $oldImage = $book->images;
+
         $validatedData = request()->validate([
             'title' => 'required',
             'category_id' => 'required',
             'publisher_id' => 'required',
-            'description' => 'required',
+            'description' => 'required|max:255',
             'sinopsis' => 'required',
-            'pages' => 'required',
+            'pages' => 'required|numeric|min:1',
             'publication_date' => 'required',
+            'images' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         // make slug from title
         $slug = Str::slug(request('title'), '-');
 
         $author_id = auth()->user()->id;
+
+        if(request('images') != null){
+            if($oldImage != null){
+                Storage::delete($oldImage);
+            }
+
+            $images = request('images')->store('book_images');
+        } else {
+            $images = $oldImage;
+        }
 
         $success = $book->update([
             'title' => $validatedData['title'],
@@ -181,6 +198,7 @@ class BookController extends Controller
             'sinopsis' => $validatedData['sinopsis'],
             'publication_date' => $validatedData['publication_date'],
             'pages' => $validatedData['pages'],
+            'images' => $images,
         ]);
 
         if($success) {

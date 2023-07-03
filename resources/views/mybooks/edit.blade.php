@@ -11,7 +11,7 @@
                             <div class="col-md-6">
                                 <div class="d-sm-flex align-items-center mb-3">
                                     <div>
-                                        <h3 class="font-weight-semibold text-lg mb-0">Add Book</h3>
+                                        <h3 class="font-weight-semibold text-lg mb-0">Edit Book</h3>
                                         <p class="text-sm mb-sm-0">Please fill the form</p>
                                     </div>
                                 </div>
@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('mybooks.update', $mybook) }}" method="POST">
+                        <form action="{{ route('mybooks.update', $mybook) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('patch')
 
@@ -110,6 +110,24 @@
                                         {{ $message }}
                                     </div>
                                 @enderror
+                            </div>
+
+                            <div class="border rounded">
+                                <div class="p-2">
+                                    <label for="images">Screenshot Website View</label>
+                                    <div class="row my-3">
+                                        <div class="col-12 col-sm-6">
+                                            @if ($mybook->images != null)
+                                                <img class="img-preview w-100 mb-4" src="{{ asset('storage/'.$mybook->images) }}">
+                                            @else
+                                                <img class="img-preview w-100 mb-4">
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <input id="images" name="images" onchange="previewImage()"
+                                        class="form-control my-2" 
+                                        type="file">
+                                </div>
                             </div>
 
                             <button class="btn btn-primary w-100 py-2" type="submit">Edit Book</button>

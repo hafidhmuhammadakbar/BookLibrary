@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('mybooks.store') }}" method="POST">
+                        <form action="{{ route('mybooks.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control @error('title') is-invalid @enderror"
@@ -108,7 +108,21 @@
                                 @enderror
                             </div>
 
-                            <button class="btn btn-primary w-100 py-2" type="submit">Add Book</button>
+                            <div class="border rounded">
+                                <div class="p-2">
+                                    <label for="images">Screenshot Website View</label>
+                                    <div class="row my-3">
+                                        <div class="col-12 col-sm-6">
+                                            <img class="img-preview w-100 mb-4">
+                                        </div>
+                                    </div>
+                                    <input id="images" name="images" onchange="previewImage()"
+                                        class="form-control my-2" 
+                                        type="file">
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-primary w-100 py-2 my-4" type="submit">Add Book</button>
                         </form>
                     </div>
                 </div>

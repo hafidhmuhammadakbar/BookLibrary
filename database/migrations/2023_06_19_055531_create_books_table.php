@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('sinopsis');
             $table->date('publication_date');
             $table->integer('pages');
+            $table->string('images')->nullable();
             $table->timestamps();
         });
     }

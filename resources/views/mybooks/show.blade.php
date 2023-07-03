@@ -26,7 +26,12 @@
                               By. <a href="/mybooks?author={{ $mybook->author->username }}" class="text-decoration-none">{{ $mybook->author->name }}</a> in 
                               <a href="/mybooks?category={{ $mybook->category->slug }}" class="text-decoration-none">{{ $mybook->category->name }}</a>
                         </p>
-                        <img src="https://source.unsplash.com/1200x400?{{ $mybook->category->name }}" class="card-img-top" alt="{{ $mybook->category->name }}" class="img-fluid">
+
+                        @if ($mybook->images != null)
+                           <img src="{{ asset('storage/' . $mybook->images) }}" class="card-img-top img-fluid" style="height: 400px; width: 1500px;" alt="{{ $mybook->category->name }}">
+                        @else
+                           <img src="https://source.unsplash.com/1200x400?{{ $mybook->category->name }}" class="card-img-top img-fluid" alt="{{ $mybook->category->name }}">
+                        @endif
                         
                         <article class="my-3 fs-4">
                               <p style="text-align: justify;"> {{ $mybook->sinopsis }} </p>

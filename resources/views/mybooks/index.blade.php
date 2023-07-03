@@ -23,7 +23,7 @@
                            <div class="d-sm-flex align-items-center mb-3">
                               <div>
                                  <h3 class="font-weight-semibold text-lg mb-0">{{ $title }}</h3>
-                                 <p class="text-sm mb-sm-0">All Books Page</p>
+                                 <p class="text-sm mb-sm-0">All My Books Page</p>
                               </div>
                            </div>
                         </div>
@@ -55,7 +55,13 @@
                            <div class="position-absolute px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7)">
                               <a href="/mybooks?category={{ $mybooks[0]->category->slug }}" class="text-white text-decoration-none"> {{ $mybooks[0]->category->name }}</a>
                            </div>
-                           <img src="https://source.unsplash.com/1200x400?{{ $mybooks[0]->category->name }}" class="card-img-top" alt="{{ $mybooks[0]->category->name }}">
+
+                           @if($mybooks[0]->images != null)
+                              <img src="{{ asset('storage/' . $mybooks[0]->images) }}" class="card-img-top img-fluid" style="height: 400px; width: 1500px;" alt="{{ $mybooks[0]->category->name }}">
+                           @else
+                              <img src="https://source.unsplash.com/1200x400?{{ $mybooks[0]->category->name }}" class="card-img-top" alt="{{ $mybooks[0]->category->name }}">
+                           @endif
+                           
                            <div class="card-body text-center">
                               <h2 class="card-title"><a href="/mybooks/{{ $mybooks[0]->slug }}" class="text-decoration-none text-dark" style="text-transform: capitalize;">{{ $mybooks[0]->title }}</a></h2>
                               <p>
@@ -106,7 +112,13 @@
                                           <div class="position-absolute px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7)">
                                              <a href="/mybooks?category={{ $mybook->category->slug }}" class="text-white text-decoration-none"> {{ $mybook->category->name }}</a>
                                           </div>
-                                          <img src="https://source.unsplash.com/500x400?{{ $mybook->category->name }}" class="card-img-top" alt="{{ $mybook->category->name }}">
+
+                                          @if($mybook->images != null)
+                                             <img src="{{ asset('storage/' . $mybook->images) }}" class="card-img-top img-fluid" style="height: 330px; width: 500px;" alt="{{ $mybook->category->name }}">
+                                          @else
+                                             <img src="https://source.unsplash.com/500x400?{{ $mybook->category->name }}" class="card-img-top" alt="{{ $mybook->category->name }}">
+                                          @endif
+                                          
                                           <div class="card-body">
                                              <h5 class="card-title" style="text-transform: capitalize;">{{ $mybook->title }}</h5>
                                              <p>

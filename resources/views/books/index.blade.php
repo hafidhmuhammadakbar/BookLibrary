@@ -39,7 +39,13 @@
                            <div class="position-absolute px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7)">
                               <a href="/books?category={{ $books[0]->category->slug }}" class="text-white text-decoration-none"> {{ $books[0]->category->name }}</a>
                            </div>
-                           <img src="https://source.unsplash.com/1200x400?{{ $books[0]->category->name }}" class="card-img-top" alt="{{ $books[0]->category->name }}">
+
+                           @if($books[0]->images != null)
+                              <img src="{{ asset('storage/' . $books[0]->images) }}" class="card-img-top img-fluid" style="height: 400px; width: 1500px;" alt="{{ $books[0]->category->name }}">
+                           @else
+                              <img src="https://source.unsplash.com/1200x400?{{ $books[0]->category->name }}" class="card-img-top" alt="{{ $books[0]->category->name }}">
+                           @endif
+                           
                            <div class="card-body text-center">
                               <h2 class="card-title"><a href="/books/{{ $books[0]->slug }}" class="text-decoration-none text-dark" style="text-transform: capitalize;">{{ $books[0]->title }}</a></h2>
                               <p>
@@ -68,7 +74,13 @@
                                           <div class="position-absolute px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7)">
                                              <a href="/books?category={{ $book->category->slug }}" class="text-white text-decoration-none"> {{ $book->category->name }}</a>
                                           </div>
-                                          <img src="https://source.unsplash.com/500x400?{{ $book->category->name }}" class="card-img-top" alt="{{ $book->category->name }}">
+
+                                          @if($book->images != null)
+                                             <img src="{{ asset('storage/' . $book->images) }}" class="card-img-top img-fluid" style="height: 330px; width: 500px;" alt="{{ $book->category->name }}">
+                                          @else
+                                             <img src="https://source.unsplash.com/500x400?{{ $book->category->name }}" class="card-img-top" alt="{{ $book->category->name }}">
+                                          @endif
+                                          
                                           <div class="card-body">
                                              <h5 class="card-title" style="text-transform: capitalize;">{{ $book->title }}</h5>
                                              <p>

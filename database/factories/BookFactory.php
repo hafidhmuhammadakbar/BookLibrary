@@ -22,10 +22,11 @@ class BookFactory extends Factory
             'author_id' => mt_rand(1, 7),
             'category_id' => mt_rand(1, 9),
             'publisher_id' => mt_rand(1, 6),
-            'description' => $this->faker->paragraph(2),
+            'description' => $this->faker->paragraph(1),
             'sinopsis' => $this->faker->paragraph(50),
             'publication_date' => $this->faker->date(),
             'pages' => mt_rand(100, 500),
+            'images' => NULL
         ];
     }
 }
