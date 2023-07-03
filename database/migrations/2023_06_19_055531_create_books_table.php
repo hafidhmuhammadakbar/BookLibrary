@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('author_id');
             $table->foreignId('category_id');
             $table->foreignId('publisher_id');
-            $table->text('description');
+            $table->string('description');
             $table->text('sinopsis');
             $table->date('publication_date');
             $table->integer('pages');

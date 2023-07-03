@@ -9,15 +9,17 @@ class Book extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'title',
-        'slug',
-        'category_id',
-        'publisher_id',
-        'description',
-        'publication_date',
-        'pages',
-    ];
+    protected $guarded = ['id'];
+    
+    // protected $fillable = [
+    //     'title',
+    //     'slug',
+    //     'category_id',
+    //     'publisher_id',
+    //     'description',
+    //     'publication_date',
+    //     'pages',
+    // ];
 
     // relationship with users
     public function author()

@@ -71,6 +71,8 @@
                                  </small>
                               </p>
                               <p class="card-text">{{ $mybooks[0]->excerpt }}</p>
+
+                              <p class="card-text">{{ $mybooks[0]->description }}</p>
    
                               <div class="row d-flex justify-content-center">
                                  <a href="/mybooks/{{$mybooks[0]->slug}}" class="text-decoration-none col-auto">

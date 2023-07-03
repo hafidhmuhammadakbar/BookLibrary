@@ -34,6 +34,7 @@
                                     </div>
                                 @enderror
                             </div>
+
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control @error('description') is-invalid @enderror"
                                     name="description" id="description" placeholder="Description" required
@@ -45,10 +46,11 @@
                                     </div>
                                 @enderror
                             </div>
+                            
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control @error('sinopsis') is-invalid @enderror"
-                                    name="sinopsis" id="sinopsis" placeholder="Sinopsis" required value="{{ $mybook->sinopsis }}">
-                                <label for="sinopsis">Sinopsis</label>
+                                <textarea class="form-control @error('sinopsis') is-invalid @enderror" placeholder="Sinopsis"
+                                    id="sinopsis" name="sinopsis" style="height: 100px">{{  $mybook->sinopsis }}</textarea>
+                                <label for="sinopsis" id="sinopsis" required>Sinopsis</label>
                                 @error('sinopsis')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -79,15 +81,15 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <select class="form-select" id="publisher" aria-label="Floating label select example"
-                                    name="publisher">
+                                <select class="form-select" id="publisher_id" aria-label="Floating label select example"
+                                    name="publisher_id">
                                     <option disabled>Select your publisher</option>
                                     @foreach (\App\Models\Publisher::all() as $publisher)
                                         <option value="{{$publisher->id}}" {{ $mybook->publisher_id == $publisher->id ? 'selected' : '' }}>{{ $publisher->name }}</option>
                                     @endforeach
                                 </select>
-                                <label for="publisher">Publisher</label>
-                                @error('publisher')
+                                <label for="publisher_id">Publisher</label>
+                                @error('publisher_id')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -95,15 +97,15 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <select class="form-select" id="category" aria-label="Floating label select example"
-                                    name="category">
+                                <select class="form-select" id="category_id" aria-label="Floating label select example"
+                                    name="category_id">
                                     <option disabled>Select your category</option>
                                     @foreach (\App\Models\Category::all() as $category)
                                         <option value="{{$category->id}}" {{ $mybook->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                                     @endforeach
                                 </select>
-                                <label for="category">category</label>
-                                @error('category')
+                                <label for="category_id">category</label>
+                                @error('category_id')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
