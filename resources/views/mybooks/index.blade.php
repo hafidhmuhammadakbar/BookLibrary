@@ -83,7 +83,7 @@
                               <div class="row d-flex justify-content-center">
                                  <a href="/mybooks/{{$mybooks[0]->slug}}" class="text-decoration-none col-auto">
                                     <button type="button" class="btn btn-sm btn-primary my-2 mx-2">
-                                       <i class="bi bi-three-dots"></i> Read More
+                                       <i class="bi bi-book"></i>  Read More
                                     </button>
                                  </a>
                                  <a href="{{ route('mybooks.edit', $mybooks[0]) }}" class="text-decoration-none col-auto">
@@ -137,7 +137,7 @@
                                              <div class="row d-flex justify-content-center">
                                                 <a href="/mybooks/{{$mybook->slug}}" class="text-decoration-none col-auto">
                                                    <button type="button" class="btn btn-sm btn-primary my-2 mx-2">
-                                                      <i class="bi bi-three-dots"></i> Read More
+                                                      <i class="bi bi-book"></i>  Read More
                                                    </button>
                                                 </a>
                                                 <a href="{{ route('mybooks.edit', $mybook) }}" class="text-decoration-none col-auto">

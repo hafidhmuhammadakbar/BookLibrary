@@ -62,7 +62,8 @@
                               </p>
                               <p class="card-text">{{ $books[0]->excerpt }}</p>
    
-                              <a href="/books/{{$books[0]->slug}}" class="text-decoration-none btn btn-primary">Read more</a>
+                              <a href="/books/{{$books[0]->slug}}" class="text-decoration-none btn btn-primary">
+                                 <i class="bi bi-book"></i>  Read more</a>
                            </div>
                         </div>
                      </div>
@@ -95,7 +96,8 @@
                                                 </small>
                                              </p>
                                              <p class="card-text">{{ $book->description }}</p>
-                                             <a href="/books/{{$book->slug}}" class="btn btn-primary">Read More</a>
+                                             <a href="/books/{{$book->slug}}" class="btn btn-primary">
+                                                <i class="bi bi-book"></i>  Read More</a>
                                           </div>
                                        </div>
                                  </div>
