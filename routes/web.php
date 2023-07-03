@@ -64,4 +64,11 @@ Route::middleware('auth')->group(function () {
     
     // publishers
     Route::get('/publishers', [PublisherController::class, 'index'])->name('publishers.index');
+
+    // profile
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile.index');
+
+    Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile/{user}', [UserController::class, 'update'])->name('profile.update');
+
 });

@@ -37,7 +37,7 @@
                             Welcome back, {{ auth()->user()->name }}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/home"><i class="bi bi-person-circle"></i> Home </a></li>
+                            <li><a class="dropdown-item" href="{{ route('profile.index') }}"><i class="bi bi-person-circle"></i> My Profile </a></li>
                             @can('writer')
                                 <li><a class="dropdown-item" href="/mybooks"><i class="bi bi-layout-text-window-reverse"></i> My Post</a></li>
                             @endcan
