@@ -96,7 +96,12 @@ class BookController extends Controller
         ]);
     }
 
-    public function mybooksShow(Book $book){
+    public function mybooksShow(Book $book)
+    {   
+        if (! Gate::allows('update-book', $book)) {
+            return redirect (route('mybooks.index'))->with('error', 'You dont have authorization to edit this book!');
+        }
+
         return view('mybooks.show', [
             "active" => "mybooks",
             "title" => 'Book Detail',

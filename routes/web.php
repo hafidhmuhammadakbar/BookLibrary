@@ -40,15 +40,15 @@ Route::middleware('auth')->group(function () {
     
     // my books
     Route::get('/mybooks', [BookController::class, 'mybooks'])->middleware('writer')->name('mybooks.index');
-    // Route::post('/mybooks', [BookController::class, 'mybooksStore'])->middleware('writer')->name('mybooks.store');
+    
     Route::get('/mybooks/create', [BookController::class, 'mybooksCreate'])->middleware('writer')->name('mybooks.create');
     Route::post('/mybooks', [BookController::class, 'mybooksStore'])->middleware('writer')->name('mybooks.store');
 
-    Route::get('/mybooks/{book}/edit', [BookController::class, 'mybooksEdit'])->middleware('writer')->name('mybooks.edit');
-    Route::patch('/mybooks/{book}', [BookController::class, 'mybooksUpdate'])->middleware('writer')->name('mybooks.update');
+    Route::get('/mybooks/{book}/edit', [BookController::class, 'mybooksEdit'])->middleware('can:update-book,book')->name('mybooks.edit');
+    Route::patch('/mybooks/{book}', [BookController::class, 'mybooksUpdate'])->middleware('can:update-book,book')->name('mybooks.update');
     
-    Route::delete('/mybooks/{book:slug}', [BookController::class, 'destroy'])->middleware('writer')->name('mybooks.destroy');
-    Route::get('/mybooks/{book:slug}', [BookController::class, 'mybooksShow'])->middleware('writer')->name('mybooks.show');
+    Route::delete('/mybooks/{book:slug}', [BookController::class, 'destroy'])->middleware('can:update-book,book')->name('mybooks.destroy');
+    Route::get('/mybooks/{book:slug}', [BookController::class, 'mybooksShow'])->middleware('can:update-book,book')->name('mybooks.show');
 
     // books
     Route::get('/books', [BookController::class, 'index'])->name('books.index');
