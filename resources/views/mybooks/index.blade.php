@@ -5,7 +5,7 @@
    <div class="container-fluid py-4 px-5">
       @if(session()->has('error'))
          <div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
-            {{ session('success') }}
+            {{ session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
          </div>
       @elseif(session()->has('success'))

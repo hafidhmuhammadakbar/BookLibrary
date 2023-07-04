@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Book;
 use App\Models\Publisher;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -151,6 +152,10 @@ class BookController extends Controller
 
     public function mybooksEdit(Book $book)
     {
+        if (! Gate::allows('update-book', $book)) {
+            return redirect (route('mybooks.index'))->with('error', 'You dont have authorization to edit this book!');
+        }
+        
         return view('mybooks.edit', [
             "active" => "mybooks",
             "title" => "Edit Book",
@@ -210,6 +215,10 @@ class BookController extends Controller
 
     public function destroy(Book $book)
     {
+        if (! Gate::allows('update-book', $book)) {
+            return redirect (route('mybooks.index'))->with('error', 'You dont have authorization to delete this book!');
+        }
+
         $success = $book->delete();
 
         if($success) {
