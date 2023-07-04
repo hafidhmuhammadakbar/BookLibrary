@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use App\Exports\MyBooksExport;
 
 class BookController extends Controller
 {
@@ -231,5 +235,10 @@ class BookController extends Controller
         } else {
             return redirect(route('mybooks.index'))->with('error', 'Book failed to delete!');
         }
+    }
+
+    public function exportExcel(): BinaryFileResponse
+    {
+        return Excel::download(new MyBooksExport, 'mybooks.xlsx');
     }
 }

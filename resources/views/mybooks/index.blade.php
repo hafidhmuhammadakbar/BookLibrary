@@ -27,12 +27,20 @@
                               </div>
                            </div>
                         </div>
-                        <div class="col-md-3 my-2 p-2">
-                           <a href="{{ route('mybooks.create') }}" class="text-decoration-none btn btn-primary">
+                        <div class="col-md-2 my-2 p-2">
+                           <a href="{{ route('mybooks.create', auth()->user()) }}" class="text-decoration-none btn btn-primary">
                               <span class="btn-inner--text">Add book</span>
                            </a>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-2 my-2 p-2">
+                           <form action="{{ route('mybooks.export-excel') }}" method="POST" target="__blank">
+                              @csrf
+                              <button type="submit" class="text-decoration-none btn btn-primary">
+                                 Export to Excel
+                              </button>
+                           </form>
+                        </div>
+                        <div class="col-md-5">
                            <form action="/mybooks" method="GET">
                               @if (request('category'))
                                  <input type="hidden" name="category" value="{{ request('category') }}">
@@ -156,7 +164,7 @@
                                                    </form>
                                                 </div>
                                              @endcan
-                                             
+
                                           </div>
                                        </div>
                                  </div>

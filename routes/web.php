@@ -8,6 +8,7 @@ use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 
+
 use App\Models\Category;
 
 /*
@@ -49,6 +50,8 @@ Route::middleware('auth')->group(function () {
     
     Route::delete('/mybooks/{book:slug}', [BookController::class, 'destroy'])->middleware('can:update-book,book')->name('mybooks.destroy');
     Route::get('/mybooks/{book:slug}', [BookController::class, 'mybooksShow'])->middleware('can:update-book,book')->name('mybooks.show');
+
+    Route::post('/mybooks/export-excel', [BookController::class, 'exportExcel'])->middleware('writer')->name('mybooks.export-excel');
 
     // books
     Route::get('/books', [BookController::class, 'index'])->name('books.index');
